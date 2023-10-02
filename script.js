@@ -3,9 +3,16 @@ const loginBtn = document.querySelector(".loginBtn");
 
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    loginBtn.textContent = "Sair";
-    const text = document.createElement("p");
-    text.textContent = "Você está logado ";
-    loginBtn.replaceWith(text);
-    content.appendChild(loginBtn);
+    const text = document.querySelector(".loggedText");
+    if(loginBtn.textContent == "Entrar") {
+        loginBtn.textContent = "Sair";
+        const text = document.createElement("p");
+        text.textContent = "Você está logado.";
+        text.className = "loggedText";
+        loginBtn.replaceWith(text);
+        content.appendChild(loginBtn);
+    } else {
+        loginBtn.textContent = "Entrar";
+        text.parentNode.removeChild(text);
+    }
 });
