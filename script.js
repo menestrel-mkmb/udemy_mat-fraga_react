@@ -43,3 +43,16 @@ loginBtn.addEventListener("click", (e) => {
         login() :
         logout();
 });
+
+//REST operator
+
+const usuarios = ["Fulano", "Sicrano", "Beltrano"];
+const novosUsuarios = ["Zutano", "Citano"];
+
+const cadastrar = (usuarios, ...novosUsuarios) => {
+    return [...usuarios,
+        ...novosUsuarios];
+}
+
+const totalUsuarios = cadastrar(usuarios, ...novosUsuarios);
+console.log(totalUsuarios);
