@@ -56,3 +56,26 @@ const cadastrar = (usuarios, ...novosUsuarios) => {
 
 const totalUsuarios = cadastrar(usuarios, ...novosUsuarios);
 console.log(totalUsuarios);
+
+// includes
+// endsWith
+// startsWith
+
+const nomeExistente = "Fulano";
+const nomeNaoExistente = "Ciclano"
+const arrayIncludes = (array, nome) =>
+        `${nome} ${array.includes(nome) ? "" : "não "}está na lista`;
+console.log(arrayIncludes(totalUsuarios, nomeExistente));
+console.log(arrayIncludes(totalUsuarios, nomeNaoExistente));
+
+const inicioTrue = "Ful";
+const inicioFalse = 'ful';
+const stringStartsWith = (string, inicio) => string.startsWith(inicio);
+console.log(stringStartsWith(nomeExistente, inicioTrue));
+console.log(stringStartsWith(nomeExistente, inicioFalse));
+
+const fimTrue = "ano";
+const fimFalse = "Ano";
+const stringEndsWith = (string, fim) => string.endsWith(fim);
+console.log(stringEndsWith(nomeExistente, fimTrue));
+console.log(stringEndsWith(nomeExistente, fimFalse));
