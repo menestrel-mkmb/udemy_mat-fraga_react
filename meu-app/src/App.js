@@ -12,9 +12,6 @@ function App() {
     <Relogio/>
 
     <Equipe/>
-    <Person name="Michael" job="developer" />
-    <Person name="Cicrano" job="qa" />
-    <Person name="Beltrano" job="tester" />
     </>);
 }
 
