@@ -9,7 +9,7 @@ class Formulario extends Component {
             title: "Login",
             data: [
                 {id: 1, name: "email", type:"email", label: "e-mail", value: "example@site.domain"},
-                {id: 2, name: "pass", type:"password", label: "password: ", value: "password"},
+                {id: 2, name: "pass", type:"password", label: "password", value: "password"},
             ],
         }
     }
