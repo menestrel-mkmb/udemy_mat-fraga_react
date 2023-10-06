@@ -6,15 +6,28 @@ class InputForms extends Component {
         this.state = {
             name: props.name,
             label: `${props.label}: `,
+            type: props.type,
             value: props.value,
+            onChange: props.onChange,
         }
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e) {
+        e.preventDefault();
+        const value = e.target.value;
+        this.setState({value: value});
     }
 
     render(){
         return(
             <section className={`${this.state.name}__form-sect`}>
                 <label for={this.state.name}>{this.state.label}</label>
-                <input type={this.state.name} name={this.state.name} id={this.state.name} value={this.state.value} />
+                <input type={this.state.type}
+                    name={this.state.name} id={this.state.name}
+                    value={this.state.value} onChange={this.onChange}
+                />
             </section>
         );
     }
