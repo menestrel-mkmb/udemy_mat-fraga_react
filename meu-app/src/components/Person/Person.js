@@ -7,8 +7,8 @@ function Person(props) {
         <h4>{`[${props.id}] ${props.name}:`}</h4>
         <h3 className="person__subtitle subtitle">Olá, sou o(a) {props.name}</h3>
         <p>Trabalho na área de {props.job}</p>
-        <p>{`${props.likes} curtidas |
-        ${props.comments} comentários`}</p>
+        <p>{`${props.likes} curtida${props.likes > 1 ? "s ": " "}|
+        ${props.comments} comentário${props.comments > 1 ? "s ": " "}`}</p>
     </>);
 }
 
