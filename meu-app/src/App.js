@@ -7,7 +7,7 @@ import Relogio from './components/Relogio/Relogio';
 
 function App() {
   return (<>
-    <BemVindo nome="Fulano"/>
+    <BemVindo name="Fulano"/>
 
     <Relogio/>
 
