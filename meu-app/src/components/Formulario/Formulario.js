@@ -28,9 +28,18 @@ class Formulario extends Component {
         this.submit = this.submit.bind(this);
     }
 
-    submit(e){
+    submit(e) {
         e.preventDefault();
-        alert('Cadastrado com sucesso');
+        const values = {};
+        this.state.typesInp.forEach((item) => {
+            const value = document.querySelector(`.${item}__form-inp`);
+            values[item]=value.value;
+        });
+        this.state.typesSlc.forEach((item) => {
+            const value = document.querySelector(`.${item}__form-slc`);
+            values[item]=value.value;
+        });
+        console.log(values);
     }
 
     render() {
