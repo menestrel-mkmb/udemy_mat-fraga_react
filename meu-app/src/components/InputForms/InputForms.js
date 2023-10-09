@@ -25,7 +25,7 @@ class InputForms extends Component {
             <section className={`${this.state.name}__form-sect`}>
                 <label htmlFor={this.state.name}>{this.state.label}</label>
                 <input type={this.state.type} className={`${this.state.name}__form-inp`}
-                    name={this.state.name} id={this.state.name}
+                    name={this.state.name} id={this.state.name} required
                     value={this.state.value} onChange={this.onChange}
                 />
             </section>

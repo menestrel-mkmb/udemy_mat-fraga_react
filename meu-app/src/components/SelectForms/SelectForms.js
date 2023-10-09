@@ -15,6 +15,7 @@ class SelectForms extends Component {
             <select name="gender" id="gender"
                 value={this.state.defaultGender} className={"gender__form-slc"}
                 onChange={(e) => {this.setState({defaultGender: e.target.value})}}
+                required
             >
                 {this.state.selectGender.map( (gender) => {
                     return(
