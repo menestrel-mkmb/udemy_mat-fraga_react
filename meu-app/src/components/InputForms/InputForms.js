@@ -23,8 +23,8 @@ class InputForms extends Component {
     render(){
         return(
             <section className={`${this.state.name}__form-sect`}>
-                <label for={this.state.name}>{this.state.label}</label>
-                <input type={this.state.type}
+                <label htmlFor={this.state.name}>{this.state.label}</label>
+                <input type={this.state.type} className={`${this.state.name}__form-inp`}
                     name={this.state.name} id={this.state.name}
                     value={this.state.value} onChange={this.onChange}
                 />

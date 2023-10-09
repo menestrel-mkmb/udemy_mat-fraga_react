@@ -10,22 +10,47 @@ class Formulario extends Component {
             data: [
                 {id: 1, name: "email", type:"email", label: "e-mail", value: "example@site.domain"},
                 {id: 2, name: "pass", type:"password", label: "password", value: "password"},
+                {id: 3, name: "name", type:"text", label: "name", value: "complete name"},
+                {id: 4, name: "birth", type:"date", label: "birthdate", value: "birth date"},
             ],
+            defaultGender: "na",
+            selectGender: [
+                {id: 1, name: "masc", value: "Masculino"},
+                {id: 2, name: "femn", value: "Feminino"},
+                {id: 3, name: "other", value: "Outro"},
+                {id: 4, name: "na", value: "Prefiro não responder"},
+            ],
+            submitText: "Sign up",
+            typesInp: ["name", "pass", "email", "birth"],
+            typesSlc: ["gender"],
         }
+
+        this.submit = this.submit.bind(this);
+    }
+
+    submit(e){
+        e.preventDefault();
+        alert('Cadastrado com sucesso');
     }
 
     render() {
         return(<article className={`${(this.state.title).toLowerCase()}__forms`}>
             <h2>{this.state.title}</h2>
-            {this.state.data.map( (inp) => {
-                return(
-                    <InputForms key={inp.id}
-                        name={inp.name} label={inp.label}
-                        value={inp.value} type={inp.type}
-                    />
+            <form onSubmit={(e) => {this.submit(e)}}>
+                {this.state.data.map( (inp) => {
+                    return(
+                        <InputForms key={inp.id}
+                            name={inp.name} label={inp.label}
+                            value={inp.value} type={inp.type}
+                        />
+                    )}
                 )}
-            )}
-            <SelectForms/>
+                <SelectForms
+                    defaultGender={this.state.defaultGender}
+                    selectGender={this.state.selectGender}
+                />
+                <button type="submit">{this.state.submitText}</button>
+            </form>
         </article>);
     }
 }
