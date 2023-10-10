@@ -1,0 +1,63 @@
+body {
+    background-color: #00aeef;
+}
+
+.timer__artc {
+    position: relative;
+
+    width: 525px;
+    height: 600px;
+
+    margin: auto;
+    padding: 2rem 4rem;
+}
+
+.timer__img {
+    position: relative;
+}
+
+button {
+    background-color: white;
+    border: 1px white solid;
+    border-radius: 10px;
+    color: black;
+
+    cursor: pointer;
+
+    font-size: 2rem;
+
+    position: absolute;
+
+    margin: 1rem;
+    padding: 1.5rem 2.2rem;
+}
+
+.timer__txt {
+    background-color: #fff8;
+    border-radius: 50%;
+
+    font-family: monospace;
+    font-size: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 15%;
+    left: 15%;
+
+    height: 28rem;
+    width: 28rem;
+}
+
+.start-stop__btn {
+    top: 2%;
+    left: 39.75%;
+}
+
+.reset__btn {
+    top: 14.75%;
+    left: 72%;
+    transform: rotate(45deg);
+}
