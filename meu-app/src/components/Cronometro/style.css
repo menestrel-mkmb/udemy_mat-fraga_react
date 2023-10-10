@@ -1,15 +1,12 @@
-body {
-    background-color: #00aeef;
-}
-
 .timer__artc {
+    background-color: #00aeef;
+
     color: black;
     font-family: monospace;
 
     position: relative;
 
     width: 525px;
-    height: 600px;
 
     margin: auto;
     padding: 2rem 4rem;
@@ -19,7 +16,7 @@ body {
     position: relative;
 }
 
-button {
+.timer__btn {
     background-color: white;
     border: 1px white solid;
     border-radius: 10px;
@@ -45,7 +42,7 @@ button {
     justify-content: center;
 
     position: absolute;
-    top: 15%;
+    top: 12%;
     left: 15%;
 
     height: 28rem;
@@ -58,8 +55,8 @@ button {
 }
 
 .reset__btn {
-    top: 14.75%;
-    left: 72%;
+    top: 12.5%;
+    left: 71%;
     transform: rotate(45deg);
 }
 
