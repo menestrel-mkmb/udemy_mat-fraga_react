@@ -1,10 +1,11 @@
-body {
-    background-color: #eccda0;
-}
-
 .fortune-cookie__artc {
+    background-color: #eccda0;
+
     padding: 2rem;
     text-align: center;
+
+    width: 50%;
+    margin: 0 auto;
 }
 
 .fortune-cookie__img {
