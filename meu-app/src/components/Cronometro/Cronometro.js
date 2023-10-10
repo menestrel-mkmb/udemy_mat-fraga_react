@@ -43,6 +43,7 @@ class Cronometro extends Component {
             <p className={"timer__txt"}>{(this.state.currTime.toFixed(2))}</p>
             <button className={"start-stop__btn"} onClick={this.toggleTime}>S</button>
             <button className={"reset__btn"} onClick={this.resetTime}>R</button>
+            <p className={"instructions__txt"}>Utilize o botão S para dar Start/Stop e o botão R para Resetar o cronômetro</p>
         </article>);
     }
 }
