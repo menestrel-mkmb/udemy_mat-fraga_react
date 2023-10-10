@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import InputForms from "../InputForms/InputForms";
 import SelectForms from "../SelectForms/SelectForms";
+import styles from "./style.css";
 
 class Formulario extends Component {
     constructor(props){
@@ -43,9 +44,9 @@ class Formulario extends Component {
     }
 
     render() {
-        return(<article className={`${(this.state.title).toLowerCase()}__forms`}>
+        return(<article className={`${(this.state.title).toLowerCase()}__artc`}>
             <h2>{this.state.title}</h2>
-            <form onSubmit={(e) => {this.submit(e)}}>
+            <form className={`${(this.state.title).toLowerCase()}__form`} onSubmit={(e) => {this.submit(e)}}>
                 {this.state.data.map( (inp) => {
                     return(
                         <InputForms key={inp.id}
