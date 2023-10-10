@@ -1,0 +1,18 @@
+body {
+    background-color: #eccda0;
+}
+
+.fortune-cookie__artc {
+    padding: 2rem;
+    text-align: center;
+}
+
+.fortune-cookie__img {
+    height: 300px;
+    width: 300px;
+}
+
+.fortune-cookie__text {
+    color: #dd7b22;
+    font-size: 1.5rem;
+}

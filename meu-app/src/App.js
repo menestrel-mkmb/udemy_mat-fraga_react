@@ -1,19 +1,21 @@
 import './App.css';
 
-import BemVindo from './components/BemVindo/BemVindo';
-import Relogio from './components/Relogio/Relogio';
+// import BemVindo from './components/BemVindo/BemVindo';
+// import Relogio from './components/Relogio/Relogio';
 
-import Formulario from './components/Formulario/Formulario';
+// import Formulario from './components/Formulario/Formulario';
 
-import Equipe from './components/Equipe/Equipe';
+// import Equipe from './components/Equipe/Equipe';
+
+import FortuneCookie from './components/FortuneCookie/FortuneCookie';
 
 function App() {
   return (<>
     {/* <BemVindo name="Fulano"/>
-    <Relogio/> */}
+    <Relogio/>
     <Formulario />
-
-    <Equipe/>
+    <Equipe/> */}
+    <FortuneCookie />
     </>);
 }
 
