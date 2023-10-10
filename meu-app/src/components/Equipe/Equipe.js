@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Person from "../Person/Person";
+import styles from "./style.css"
 
 class Equipe extends Component {
   constructor(props) {
@@ -44,15 +45,17 @@ class Equipe extends Component {
     {/* <button onClick={this.diminuir}>-</button>
     {this.state.contador}
     <button onClick={this.aumentar}>+</button> */}
-    <h2>Time</h2>
+    <h2 className={"team__title"}>Time</h2>
+    <section className={"team__sect"}>
     {this.state.feed.map((person) => {
-      return (<div>
+      return (
       <Person key={person.id}
           id={person.id} name={person.username} job={person.job}
           likes={person.curtidas} comments={person.comentarios}
       />
-      </div>);
+      );
     })}
+    </section>
     </>);
   }
 }
