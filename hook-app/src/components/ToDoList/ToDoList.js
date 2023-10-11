@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./style.css";
 
 function ToDoList() {
     const title = 'Tarefas';
@@ -21,20 +22,23 @@ function ToDoList() {
     }
 
     return (
-    <div className="App">
-        <h2>{title}</h2>
-        <input className={"newTask__inp"} type="text" placeholder="Adicione aqui sua tarefa" value={input} onChange={e => setInput(e.target.value)}/>
-        <button onClick={addTask}>{addTaskText}</button>
+    <article className="to-do-list__artc">
+        <h2 className={"tasks__title"} >{title}</h2>
+        <input className={"new-task__inp"}
+            type="text" placeholder="Adicione aqui sua tarefa"
+            value={input} onChange={e => setInput(e.target.value)}
+        />
+        <button className={"new-task__btn"} onClick={addTask}>{addTaskText}</button>
         <ul className={"tasks__ul"}>
             {tasks.map( (task, index) => {
-                return(<>
+                return(<section className={"task__sect"}>
                     <li className={"task__li"} >{task}</li>
                     <button className={"task-del__btn"} onClick={()=>{deleteTask(index)}}>X</button>
-                </>);
+                </section>);
             }
         )}
         </ul>
-    </div>
+    </article>
     );
 }
 
