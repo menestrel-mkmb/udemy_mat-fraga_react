@@ -25,7 +25,7 @@ function ToDoList() {
     <article className="to-do-list__artc">
         <h2 className={"tasks__title"} >{title}</h2>
         <input className={"new-task__inp"}
-            type="text" placeholder="Adicione aqui sua tarefa"
+            type="text" placeholder="Digite aqui sua nova tarefa"
             value={input} onChange={e => setInput(e.target.value)}
         />
         <button className={"new-task__btn"} onClick={addTask}>{addTaskText}</button>
