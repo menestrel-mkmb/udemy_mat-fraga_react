@@ -1,14 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./style.css";
 
 function ToDoList() {
     const title = 'Tarefas';
     const [input, setInput] = useState('');
     const addTaskText = 'Adicionar Tarefa';
-    const [tasks, setTasks] = useState([
-        'Pagar a conta de luz',
-        'Estudar React Hooks'
-    ]);
+    const [tasks, setTasks] = useState(()=>
+        JSON.parse(localStorage.getItem("tasks")) || []
+    );
+
+    useEffect(()=>{
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
 
     function addTask(e) {
     e.preventDefault();
