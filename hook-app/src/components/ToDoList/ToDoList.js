@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import "./style.css";
 
 function ToDoList() {
@@ -14,16 +14,15 @@ function ToDoList() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
-    function addTask(e) {
-    e.preventDefault();
-    if(input === '') return;
-    setTasks([...tasks, input]);
-    setInput('');
-    }
+    const addTask = useCallback(() => {
+        if(input === '') return;
+        setTasks([...tasks, input]);
+        setInput('');
+    }, [input, tasks]);
 
-    function deleteTask(index) {
+    const deleteTask = useCallback((index) => {
         setTasks(tasks.filter( (task, taskIndex) => index !== taskIndex));
-    }
+    }, [tasks]);
 
     return (
     <article className="to-do-list__artc">
@@ -31,6 +30,7 @@ function ToDoList() {
         <input className={"new-task__inp"}
             type="text" placeholder="Digite aqui sua nova tarefa"
             value={input} onChange={e => setInput(e.target.value)}
+            onKeyDown={e => {if(e.key === 'Enter') addTask()}}
         />
         <button className={"new-task__btn"} onClick={addTask}>{addTaskText}</button>
         <p className={"tasks-total__p"}>Total de tarefas: {tasksLength}</p>
