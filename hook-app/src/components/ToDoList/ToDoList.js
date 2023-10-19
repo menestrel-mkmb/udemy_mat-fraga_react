@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import "./style.css";
 
 function ToDoList() {
@@ -8,6 +8,7 @@ function ToDoList() {
     const [tasks, setTasks] = useState(()=>
         JSON.parse(localStorage.getItem("tasks")) || []
     );
+    const tasksLength = useMemo(() => tasks.length, [tasks]);
 
     useEffect(()=>{
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -32,6 +33,7 @@ function ToDoList() {
             value={input} onChange={e => setInput(e.target.value)}
         />
         <button className={"new-task__btn"} onClick={addTask}>{addTaskText}</button>
+        <p className={"tasks-total__p"}>Total de tarefas: {tasksLength}</p>
         <ul className={"tasks__ul"}>
             {tasks.map( (task, index) => {
                 return(<section className={"task__sect"}>

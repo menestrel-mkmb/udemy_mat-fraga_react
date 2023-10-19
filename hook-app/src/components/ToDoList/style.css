@@ -91,3 +91,9 @@
     height: 75%;
     width: 10%;
 }
+
+.tasks-total__p {
+    font-weight: 300;
+    font-size: .5rem;
+    width: 100%;
+}
