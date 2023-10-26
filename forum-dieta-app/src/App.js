@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 
+import Post from "./components/Post/Post";
 import Header from "./components/Header/Header";
 
 import obj from "./data.json";
@@ -12,18 +13,13 @@ function App() {
       <main>
         {obj.map((post) => {
           return (
-            <section key={post.id} className={"post__sect"}>
-              <img src={post.capa} alt="" />
-              <section>
-                <div className={"post__title-bar"}>
-                  <h2>{post.titulo}</h2>
-                  <h4>
-                    {post.categoria} ({post.id})
-                  </h4>
-                </div>
-                <h3>{post.subtitulo}</h3>
-              </section>
-            </section>
+            <Post
+              titulo={post.titulo}
+              categoria={post.categoria}
+              capa={post.capa}
+              id={post.id}
+              subtitulo={post.subtitulo}
+            />
           );
         })}
       </main>
