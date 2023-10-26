@@ -1,29 +1,30 @@
-import React from 'react';
+import React from "react";
+import "./style.css";
 
-import obj from './data.json';
+import Header from "./components/Header/Header";
 
-import './style.css';
+import obj from "./data.json";
 
 function App() {
-
   return (
     <div className="App">
-      <header className="header header__sect">
-        <h1 className={"site__title"}>ReactNutri</h1>
-      </header>
+      <Header title="ReactNutri" />
       <main>
         {obj.map((post) => {
-          return(
-          <section key={post.id} className={"post__sect"}>
-            <img src={post.capa} alt="" />
-            <section>
-              <div className={"post__title-bar"}>
-                <h2>{post.titulo}</h2>
-                <h4>{post.categoria} ({post.id})</h4>
-              </div>
-              <h3>{post.subtitulo}</h3>
+          return (
+            <section key={post.id} className={"post__sect"}>
+              <img src={post.capa} alt="" />
+              <section>
+                <div className={"post__title-bar"}>
+                  <h2>{post.titulo}</h2>
+                  <h4>
+                    {post.categoria} ({post.id})
+                  </h4>
+                </div>
+                <h3>{post.subtitulo}</h3>
+              </section>
             </section>
-          </section>);
+          );
         })}
       </main>
     </div>
