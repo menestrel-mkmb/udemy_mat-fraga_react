@@ -1,15 +1,17 @@
 .header {
   background-color: black;
   color: white;
+  vertical-align: middle;
 
-  height: 4rem;
-  width: 100%;
-
-  padding: 1rem 4rem;
+  margin: 0;
 }
 
 .header__title {
   font-size: 2rem;
   font-weight: 500;
+  line-height: 2.8rem;
   text-transform: uppercase;
+
+  margin: 0;
+  padding: .5rem 2rem;
 }
