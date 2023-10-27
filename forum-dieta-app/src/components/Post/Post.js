@@ -13,6 +13,7 @@ function Post(props) {
           </h4>
         </div>
         <h3>{props.subtitulo}</h3>
+        <button className={"post__btn"}>LER MAIS</button>
       </section>
     </article>
   );

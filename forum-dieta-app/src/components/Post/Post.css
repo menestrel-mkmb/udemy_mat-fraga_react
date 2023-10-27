@@ -54,3 +54,19 @@ h3 {
 
     padding: .5rem 2rem;
 }
+
+.post__btn:hover {
+    background-color: #bbb;
+}
+
+.post__btn,
+.post__btn:active {
+    background-color: #eee;
+    border: 1px #eee solid;
+    border-radius: 8px;
+    
+    width: 90%;
+
+    margin: .5rem 1rem;
+    padding: .5rem 2rem;
+}
