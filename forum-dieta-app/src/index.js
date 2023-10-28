@@ -4,10 +4,14 @@ import App from './App';
 
 import './index.css';
 
+import Header from './components/Header/Header';
+import RoutesApp from './routes';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Header title="ReactNutri" />
+    <RoutesApp />
   </React.StrictMode>
 );
