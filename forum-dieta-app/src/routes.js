@@ -6,7 +6,8 @@ import Error404 from "./Pages/Error404/Error404";
 import App from "./App";
 
 function RoutesApp() {
-    return(<BrowserRouter>
+    return(
+    <BrowserRouter>
         <Routes>
             <Route path="/" element={ <App /> } />
             <Route path="/about" element={ <About /> } />
