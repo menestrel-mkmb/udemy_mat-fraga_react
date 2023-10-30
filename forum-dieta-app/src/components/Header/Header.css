@@ -3,7 +3,7 @@
   color: white;
   vertical-align: middle;
 
-  margin: 0;
+  padding: 0.5rem 2rem;
 }
 
 .header__title {
@@ -14,4 +14,21 @@
 
   margin: 0;
   padding: .5rem 2rem;
+}
+
+.header,
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+a,
+a:visited {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
 }
