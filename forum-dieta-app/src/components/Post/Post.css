@@ -30,7 +30,7 @@ img {
     background-color: #eee;
     border-bottom: 2px #4444 solid;
 
-    height: 6rem;
+    min-height: 6rem;
     width: 100%;
     padding: 1rem;
 }
