@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Post.css";
+import PostDetails from "../../Pages/PostDetails/PostDetails";
 
 function Post(props) {
   return (
     <article key={props.id} className={"post__arct"}>
-      <img src={props.capa} alt="" />
+      <img src={props.capa} alt="Illustrative for post" />
       <section>
         <div className={"post__title-bar"}>
           <h2>{props.titulo}</h2>
@@ -13,7 +15,7 @@ function Post(props) {
           </h4>
         </div>
         <h3>{props.subtitulo}</h3>
-        <button className={"post__btn"}>LER MAIS</button>
+        <Link to={`/post/${props.id}`} element={ <PostDetails /> } className={"post__btn"} />
       </section>
     </article>
   );

@@ -11,15 +11,15 @@ function PostDetails() {
         fetch(baseURL)
         .then((r) => r.json())
         .then((obj) => setObj(obj.find( (post) => String(post.id) === postId )));
-    }, []);
+    }, [postId]);
 
-    useEffect(fetchApi, []);
+    useEffect(fetchApi, [fetchApi]);
 
     return(<main className={"main__sect main content"}>
         {
         <article>
             <h2>{obj.titulo}</h2>
-            <img src={obj.capa} />
+            <img src={obj.capa} alt="Illustrative for post" />
             <p>Categoria: {obj.categoria} ID: {obj.id}</p>
             <p>{obj.subtitulo}</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

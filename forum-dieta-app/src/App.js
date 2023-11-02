@@ -14,7 +14,7 @@ function App() {
       .then((json) => setObj(json));
   }, []);
 
-  useEffect(fetchApi, []);
+  useEffect(fetchApi, [fetchApi]);
 
   obj.length === 0 && setObj(staticObj);
 
