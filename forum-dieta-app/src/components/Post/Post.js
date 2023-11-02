@@ -7,7 +7,7 @@ function Post(props) {
   return (
     <article key={props.id} className={"post__arct"}>
       <img src={props.capa} alt="Illustrative for post" />
-      <section>
+      <section className={"post-texts__sect"}>
         <div className={"post__title-bar"}>
           <h2>{props.titulo}</h2>
           <h4>
@@ -15,7 +15,7 @@ function Post(props) {
           </h4>
         </div>
         <h3>{props.subtitulo}</h3>
-        <Link to={`/post/${props.id}`} element={ <PostDetails /> } className={"post__btn"} />
+        <Link to={`/post/${props.id}`} element={ <PostDetails /> } className={"post__btn"}>Ler mais</Link>
       </section>
     </article>
   );
