@@ -1,4 +1,7 @@
 header {
+    background-color: #222;
+    color: #ddd;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -10,4 +13,16 @@ header {
 
     margin: 0;
     padding: 1rem 4rem;
+}
+
+header a,
+header a:visited {
+    color: #ddd;
+    text-decoration: none;
+}
+
+header .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
 }
