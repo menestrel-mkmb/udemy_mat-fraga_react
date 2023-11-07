@@ -6,6 +6,6 @@ export default function Movie() {
 
     return(
     <main>
-        <h2>Movie</h2>
+        <h2>Movie {movieId}</h2>
     </main>);
 }
