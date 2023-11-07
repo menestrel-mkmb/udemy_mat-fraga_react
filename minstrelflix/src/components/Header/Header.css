@@ -1,4 +1,10 @@
 header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    min-height: 4rem;
     max-height: 6rem;
     width: 100%;
 
