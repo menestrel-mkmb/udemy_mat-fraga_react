@@ -9,8 +9,6 @@ export default function Home() {
     useEffect(() => {
         async function loadMoviesFromApi() {
             const endpointUrl = API_PARAMS.endpoints.nowplaying;
-            
-            console.log(endpointUrl);
 
             const response = await apitmdb.get(endpointUrl,
                 { params: {
@@ -20,13 +18,13 @@ export default function Home() {
                 }}
             );
             
-            console.log(response);
-            return response;
+            response.status === 200 && setMovies(response.data.results);
+            console.log(response.data.results);
         }
 
-        setMovies(loadMoviesFromApi());
-        console.log(movies);
+        loadMoviesFromApi();
     }, []);
+
 
     return(
     <main>
