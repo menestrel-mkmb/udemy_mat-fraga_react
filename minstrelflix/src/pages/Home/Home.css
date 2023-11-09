@@ -4,3 +4,16 @@ main {
 
     margin: 0 10%;
 }
+
+.movies__artc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.now-playing__title {
+    padding-bottom: 2rem;
+}
