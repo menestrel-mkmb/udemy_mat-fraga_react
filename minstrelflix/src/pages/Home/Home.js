@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import Card from "../../components/Card/Card";
+
 import "./Home.css";
+
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 
 export default function Home() {
@@ -19,7 +22,6 @@ export default function Home() {
             );
             
             response.status === 200 && setMovies(response.data.results);
-            console.log(response.data.results);
         }
 
         loadMoviesFromApi();
@@ -27,7 +29,12 @@ export default function Home() {
 
 
     return(
-    <main>
-        <p>Home</p>
+    <main class={"main__sect main"}>
+        <article className={"now-playing__artc movies__artc movies container"}>
+            <h2 className={"home__title now-playing__tile"}>Agora nos cinemas</h2>
+            {movies.map( (movie, index) => {
+                return(<Card movie={movie} index={index} />);
+            })}
+        </article>
     </main>)
 }
