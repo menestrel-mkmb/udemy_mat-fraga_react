@@ -29,11 +29,11 @@ export default function Home() {
 
 
     return(
-    <main class={"main__sect main"}>
+    <main className={"main__sect main"}>
         <h2 className={"home__title now-playing__title"}>Agora nos cinemas</h2>
         <article className={"now-playing__artc movies__artc movies container"}>
             {movies.map( (movie, index) => {
-                return(<Card movie={movie} index={index} key={index} />);
+                return(<Card movie={movie} index={index} key={movie.id} />);
             })}
         </article>
     </main>)
