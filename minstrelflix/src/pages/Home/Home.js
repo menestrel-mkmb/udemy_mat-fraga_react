@@ -20,7 +20,7 @@ export default function Home() {
                     page: INTERNAL_API_PARAMS.page
                 }}
             );
-            
+            // console.log(response);
             response.status === 200 && setMovies(response.data.results);
         }
 
@@ -30,10 +30,10 @@ export default function Home() {
 
     return(
     <main class={"main__sect main"}>
+        <h2 className={"home__title now-playing__title"}>Agora nos cinemas</h2>
         <article className={"now-playing__artc movies__artc movies container"}>
-            <h2 className={"home__title now-playing__tile"}>Agora nos cinemas</h2>
             {movies.map( (movie, index) => {
-                return(<Card movie={movie} index={index} />);
+                return(<Card movie={movie} index={index} key={index} />);
             })}
         </article>
     </main>)
