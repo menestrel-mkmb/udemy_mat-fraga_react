@@ -6,8 +6,11 @@ export const API_PARAMS = {
         movies: "movie/",
         nowplaying: "movie/now_playing"
     },
+    image_base_url: "https://image.tmdb.org/t/p",
+    image_original_size: "/original",
+    image_w300_size: "/w300",
     token: "?api_key=",
-    language: "&language="
+    language: "&language=",
 }
 
 export const INTERNAL_API_PARAMS = {
