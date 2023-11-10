@@ -4,7 +4,7 @@ import "./Error404.css";
 import Home from "../Home/Home";
 
 export default function Error404() {
-    const error404Url = "https://dev-to-uploads.s3.amazonaws.com/i/7aqcppklh6bexoa70320.jpg";
+    
     return(<main className={'main__sect main'}>
         <article className={"error__artc"}>
             <section className={"error-pic__sect"}>
