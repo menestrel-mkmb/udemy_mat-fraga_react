@@ -1,6 +1,41 @@
 main {
-    min-height: calc(100vh - 4rem);
     width: 80%;
 
     margin: 0 10%;
+}
+
+.error__artc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    min-height: calc(100vh - 4rem);
+}
+
+.e404__pic:after {
+    content: "404";
+    font-size: 18rem;
+    pointer-events: none;
+    transform: rotate(.25turn);
+}
+
+.error__title {
+    font-size: 4rem;
+    margin-top: 2rem;
+}
+
+.not-found__txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found__txt strong {
+    font-size: 2.5rem;
+    font-weight: 500;
+
+    padding: 4rem 1rem;
 }
