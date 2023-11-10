@@ -5,6 +5,13 @@ main {
     margin: 0 10%;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+
+    min-height: calc(100vh -6rem);
+}
+
 .movies__artc {
     display: flex;
     flex-direction: row;

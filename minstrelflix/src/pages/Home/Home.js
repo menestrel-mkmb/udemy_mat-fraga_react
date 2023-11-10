@@ -8,6 +8,7 @@ import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmd
 export default function Home() {
     
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadMoviesFromApi() {
@@ -22,10 +23,16 @@ export default function Home() {
             );
             // console.log(response);
             response.status === 200 && setMovies(response.data.results);
+            response.status === 200 && setLoading(false);
         }
 
         loadMoviesFromApi();
     }, []);
+
+
+    if(loading) return(<main className={'main__sect main'}>
+        <h2 className={'loading'}>Carregando filmes...</h2>
+    </main>);
 
 
     return(
