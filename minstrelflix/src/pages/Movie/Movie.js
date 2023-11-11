@@ -33,6 +33,24 @@ export default function Movie() {
 
     return(
     <main className={'main__sect main'}>
-        <h2>Filme</h2>
+        <img className={"backdrop__img"}
+            src={API_PARAMS.image_base_url
+                + API_PARAMS.image_original_size
+                + movie.backdrop_path}
+        />
+        <article className={"movie__artc"}>
+            <h2 className={"movie__title"}>{movie.title}</h2>
+            <section className={"container general-info__sect"}>
+                <img className={"poster__img"}
+                    src={API_PARAMS.image_base_url
+                        + API_PARAMS.image_w300_size
+                        + movie.poster_path}
+                />
+                <section className={"general-txt__sect"}>
+                    <p>{movie.overview}</p>
+                    <h3>Título original: {movie.original_title}</h3>
+                </section>
+            </section>
+        </article>
     </main>);
 }
