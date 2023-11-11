@@ -27,7 +27,7 @@ export default function Movie() {
         }
 
         fetchMovie();
-    }, []);
+    }, [movieId]);
 
     if(loading) return(<Loading />);
 
@@ -37,6 +37,7 @@ export default function Movie() {
             src={API_PARAMS.image_base_url
                 + API_PARAMS.image_original_size
                 + movie.backdrop_path}
+            alt=" "
         />
         <article className={"movie__artc"}>
             <h2 className={"movie__title"}>{movie.title}</h2>
@@ -45,6 +46,7 @@ export default function Movie() {
                     src={API_PARAMS.image_base_url
                         + API_PARAMS.image_w300_size
                         + movie.poster_path}
+                    alt={"Pôster do filme " + movie.title}
                 />
                 <section className={"general-txt__sect"}>
                     <p>{movie.overview}</p>
