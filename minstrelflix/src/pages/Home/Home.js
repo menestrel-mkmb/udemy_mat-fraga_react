@@ -4,6 +4,7 @@ import Card from "../../components/Card/Card";
 import "./Home.css";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
+import Loading from "../../components/Loading/Loading";
 
 export default function Home() {
     
@@ -30,9 +31,7 @@ export default function Home() {
     }, []);
 
 
-    if(loading) return(<main className={'main__sect main'}>
-        <h2 className={'loading'}>Carregando filmes...</h2>
-    </main>);
+    if(loading) return <Loading />;
 
 
     return(
