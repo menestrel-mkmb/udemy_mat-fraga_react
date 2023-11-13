@@ -1,0 +1,1 @@
+export const urlTitle = "https://www.imdb.com/title/";
