@@ -16,16 +16,15 @@ export default function Movie() {
         async function fetchMovie () {
             const endpointUrl = API_PARAMS.endpoints.movies + movieId;
 
-            const response = await apitmdb.get(endpointUrl,
+            await apitmdb.get(endpointUrl,
                 { params: {
                     api_key: INTERNAL_API_PARAMS.key,
                     language: INTERNAL_API_PARAMS.lang,
                 }}
-            );
-
-            console.log(response);
-            response.status === 200 && setMovie(response.data);
-            response.status === 200 && setLoading(false);
+            ).then((response) => {
+                setMovie(response.data);
+                setLoading(false);
+            });
         }
 
         fetchMovie();

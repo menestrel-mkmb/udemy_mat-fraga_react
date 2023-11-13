@@ -15,16 +15,16 @@ export default function Home() {
         async function loadMoviesFromApi() {
             const endpointUrl = API_PARAMS.endpoints.nowplaying;
 
-            const response = await apitmdb.get(endpointUrl,
+            await apitmdb.get(endpointUrl,
                 { params: {
                     api_key: INTERNAL_API_PARAMS.key,
                     language: INTERNAL_API_PARAMS.lang,
                     page: INTERNAL_API_PARAMS.page
                 }}
-            );
-            // console.log(response);
-            response.status === 200 && setMovies(response.data.results);
-            response.status === 200 && setLoading(false);
+            ).then( (response) => {
+                setMovies(response.data.results);
+                setLoading(false);
+            });
         }
 
         loadMoviesFromApi();
