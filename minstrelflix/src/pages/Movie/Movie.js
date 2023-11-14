@@ -6,6 +6,7 @@ import Loading from "../../components/Loading/Loading";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 import { urlTitle } from "../../services/imdb";
+import { urlSearchQuery } from "../../services/youtube";
 
 export default function Movie() {
     const { movieId } = useParams();
@@ -70,13 +71,25 @@ export default function Movie() {
                     <p className={"field__txt"}>Nota do público: 
                         <strong className={"info__txt"}>{movie.vote_average}/10 ({movie.vote_count})</strong>
                     </p>
-                    <p className={"field__txt links__sect"}>Links  
-                        <strong className={"info__txt"}>
+                    <p className={"field__txt"}>Links externos
+                        <strong className={"info__txt links__sect"}>
                             <a
                                 href={urlTitle + movie.imdb_id}
                                 target={"_blank"} rel="noreferrer"
                             >
                                 Página no IMDB
+                            </a>
+                            <a
+                                href={urlSearchQuery + movie.original_title + " Oficial trailer"}
+                                target={"_blank"} rel="noreferrer external"
+                            >
+                                Youtube - Trailer Oficial
+                            </a>
+                            <a
+                                href={urlSearchQuery + "Trailer " + movie.title + " legendado"}
+                                target={"_blank"} rel="noreferrer external"
+                            >
+                                Youtube - Trailer Legendado
                             </a>
                         </strong>
                         
