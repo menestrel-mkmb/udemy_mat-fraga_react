@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
@@ -11,6 +11,7 @@ export default function Movie() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     
     useEffect(() => {
         async function fetchMovie () {
@@ -24,11 +25,15 @@ export default function Movie() {
             ).then((response) => {
                 setMovie(response.data);
                 setLoading(false);
-            });
+            }).catch( (response) => {
+                console.log(response);
+                response.response.status === 404 && navigate("/notfound", { replace: true });
+            }
+            );
         }
 
         fetchMovie();
-    }, [movieId]);
+    }, [movieId, navigate]);
 
     if(loading) return(<Loading />);
 
