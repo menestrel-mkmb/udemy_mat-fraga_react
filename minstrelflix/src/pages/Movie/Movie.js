@@ -12,6 +12,7 @@ export default function Movie() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [movieNacional, setMovieNacional] = useState(false);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -25,9 +26,9 @@ export default function Movie() {
                 }}
             ).then((response) => {
                 setMovie(response.data);
+                setMovieNacional(response.data.original_language === 'pt');
                 setLoading(false);
             }).catch( (response) => {
-                console.log(response);
                 response.response.status === 404 && navigate("/notfound", { replace: true });
             }
             );
@@ -85,12 +86,14 @@ export default function Movie() {
                             >
                                 Youtube - Trailer Oficial
                             </a>
-                            <a  className={"link-1 external__link"}
-                                href={urlSearchQuery + "Trailer " + movie.title + " legendado"}
-                                target={"_blank"} rel="noreferrer external"
-                            >
-                                Youtube - Trailer Legendado
-                            </a>
+                            {!movieNacional && (
+                                <a  className={"link-1 external__link"}
+                                    href={urlSearchQuery + "Trailer " + movie.title + " legendado"}
+                                    target={"_blank"} rel="noreferrer external"
+                                >
+                                    Youtube - Trailer Legendado
+                                </a>)
+                            }
                         </strong>
                         
                     </p>
