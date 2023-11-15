@@ -73,19 +73,19 @@ export default function Movie() {
                     </p>
                     <p className={"field__txt"}>Links externos
                         <strong className={"info__txt links__sect"}>
-                            <a
+                            <a  className={"link-1 external__link"}
                                 href={urlTitle + movie.imdb_id}
                                 target={"_blank"} rel="noreferrer"
                             >
                                 Página no IMDB
                             </a>
-                            <a
+                            <a  className={"link-1 external__link"}
                                 href={urlSearchQuery + movie.original_title + " Oficial trailer"}
                                 target={"_blank"} rel="noreferrer external"
                             >
                                 Youtube - Trailer Oficial
                             </a>
-                            <a
+                            <a  className={"link-1 external__link"}
                                 href={urlSearchQuery + "Trailer " + movie.title + " legendado"}
                                 target={"_blank"} rel="noreferrer external"
                             >
