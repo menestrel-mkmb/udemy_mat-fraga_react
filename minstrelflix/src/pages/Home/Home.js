@@ -39,7 +39,7 @@ export default function Home() {
         <h2 className={"home__title now-playing__title"}>Agora nos cinemas</h2>
         <article className={"now-playing__artc movies__artc movies container"}>
             {movies.map( (movie, index) => {
-                return(<Card movie={movie} index={index} key={movie.id} />);
+                return(<Card movie={movie} index={index} key={movie.id} lang={movie.original_lang} />);
             })}
         </article>
     </main>)
