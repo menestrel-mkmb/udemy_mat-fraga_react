@@ -9,25 +9,43 @@
     align-items: center;
     gap: 1rem;
 
-    position: absolute;
+    position: fixed;
     top:0;
-    left: 0;
+    right: 0;
 
-    width: 100%;
-
-    padding: 2rem 4rem;
+    width: 400px;
+    
+    padding: 1rem 2rem;
 
     transition: all 500ms;
 }
 
+.timer__pbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+}
+
+
 .notification__artc.success {
-    background-color: #12a91270;
+    background-color: #12a91230;
 }
 
 .notification__artc.error {
-    background-color: #e9121270;
+    background-color: #e9121230;
 }
 
 .notification__artc.hidden {
     display: none;
+}
+
+.notf__title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.notf__desc {
+    font-weight: 300;
 }
