@@ -1,0 +1,33 @@
+.notification__artc {
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+    color: #e9e9e9;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    position: absolute;
+    top:0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 2rem 4rem;
+
+    transition: all 500ms;
+}
+
+.notification__artc.success {
+    background-color: #12a91270;
+}
+
+.notification__artc.error {
+    background-color: #e9121270;
+}
+
+.notification__artc.hidden {
+    display: none;
+}
