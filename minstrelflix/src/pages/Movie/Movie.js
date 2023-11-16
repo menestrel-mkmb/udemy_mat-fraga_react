@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./Movie.css";
 
@@ -30,12 +30,30 @@ export default function Movie() {
                 setLoading(false);
             }).catch( (response) => {
                 response.response.status === 404 && navigate("/notfound", { replace: true });
-            }
-            );
+            });
         }
 
         fetchMovie();
     }, [movieId, navigate]);
+
+    const favMovie = useCallback(() => {
+        console.log(movie);
+        const localList = localStorage.getItem("@favoriteList");
+        let favList = JSON.parse(localList) || [];
+        favList.some((favMovie) => movie.id === favMovie.id) ?
+            alert("Filme já existe") : favList.push(movie);
+        alert("Lista de favoritos: " + favList);
+        localStorage.setItem("@favoriteList", JSON.stringify(favList));
+    }, [movie]);
+
+    const watchLaterMovie = useCallback(() => {
+        const localList = localStorage.getItem("@toWatchList");
+        let watchList = JSON.parse(localList) || [];
+        watchList.some((watchMovie) => movie.id === watchMovie.id) ?
+            alert("Filme já existe") : watchList.push(movie);
+        alert("Lista para assistir mais tarde: " + watchList);
+        localStorage.setItem("@toWatchList", JSON.stringify(watchList));
+    }, [movie]);
 
     if(loading) return(<Loading />);
 
@@ -97,7 +115,20 @@ export default function Movie() {
                         </strong>
                         
                     </p>
-
+                </section>
+                <section className={"cta__sect"}>
+                    <button
+                        onClick={favMovie}
+                        className={"cta__btn save__btn"}
+                    >
+                        Favoritos
+                    </button>
+                    <button
+                        onClick={watchLaterMovie}
+                        className={"cta__btn watch-later__btn"}
+                    >
+                        Assistir mais tarde
+                    </button>
                 </section>
             </section>
         </article>
