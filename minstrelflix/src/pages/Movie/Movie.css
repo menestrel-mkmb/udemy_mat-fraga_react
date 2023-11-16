@@ -35,7 +35,9 @@ main {
     text-align: center;
     text-shadow: 2px 2px 4px #121212;
     text-transform: uppercase;
+}
 
+.movie-page__title {
     padding-top: 22rem;
 }
 

@@ -48,7 +48,7 @@ export default function Movie() {
             alt=" "
         />
         <article className={"movie__artc"}>
-            <h2 className={"movie__title"}>{movie.title}</h2>
+            <h2 className={"movie__title movie-page__title"}>{movie.title}</h2>
             <section className={"container general-info__sect"}>
                 <img className={"poster__img"}
                     src={API_PARAMS.image_base_url
