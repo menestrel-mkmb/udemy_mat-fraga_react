@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
+import Notification from "../../components/Notification/Notification";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 import { urlTitle } from "../../services/imdb";
@@ -13,7 +14,9 @@ export default function Movie() {
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true);
     const [movieNacional, setMovieNacional] = useState(false);
+    let [notification, setNotification] = useState("");
     const navigate = useNavigate();
+
     
     useEffect(() => {
         async function fetchMovie () {
@@ -36,29 +39,42 @@ export default function Movie() {
         fetchMovie();
     }, [movieId, navigate]);
 
+    const sendNotification = useCallback(() => {
+        setNotification("success");
+        return movie;
+    }, [movie]);
+
     const favMovie = useCallback(() => {
-        console.log(movie);
         const localList = localStorage.getItem("@favoriteList");
         let favList = JSON.parse(localList) || [];
+
         favList.some((favMovie) => movie.id === favMovie.id) ?
-            alert("Filme já existe") : favList.push(movie);
-        alert("Lista de favoritos: " + favList);
+            setNotification("error") :
+            favList.push(sendNotification());
+            
+        console.log(`Favoritos:`);
+        console.log(favList);
         localStorage.setItem("@favoriteList", JSON.stringify(favList));
-    }, [movie]);
+    }, [movie, sendNotification]);
 
     const watchLaterMovie = useCallback(() => {
         const localList = localStorage.getItem("@toWatchList");
         let watchList = JSON.parse(localList) || [];
+
         watchList.some((watchMovie) => movie.id === watchMovie.id) ?
-            alert("Filme já existe") : watchList.push(movie);
-        alert("Lista para assistir mais tarde: " + watchList);
+            setNotification("error") :
+            watchList.push(sendNotification());
+        
+        console.log(`Assistir mais tarde:`);
+        console.log(watchList);
         localStorage.setItem("@toWatchList", JSON.stringify(watchList));
-    }, [movie]);
+    }, [movie, sendNotification]);
 
     if(loading) return(<Loading />);
 
     return(
     <main className={'main__sect main'}>
+        {notification && <Notification type={notification} />}
         <img className={"backdrop__img"}
             src={API_PARAMS.image_base_url
                 + API_PARAMS.image_original_size
