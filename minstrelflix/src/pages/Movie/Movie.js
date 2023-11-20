@@ -16,7 +16,6 @@ export default function Movie() {
     const [movieNacional, setMovieNacional] = useState(false);
     let [notification, setNotification] = useState("");
     const navigate = useNavigate();
-
     
     useEffect(() => {
         async function fetchMovie () {
