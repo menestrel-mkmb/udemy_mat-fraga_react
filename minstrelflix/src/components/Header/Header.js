@@ -11,6 +11,7 @@ export default function Header() {
         <nav className={"menu__nav menu"}>
             <Link to="/">Home</Link>
             <Link to="/favorites">Favoritos</Link>
+            <Link to="/watchlater">Assistir mais tarde</Link>
         </nav>
     </header>);
 }
