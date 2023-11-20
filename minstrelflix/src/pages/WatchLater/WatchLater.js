@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 import "./WatchLater.css";
+
 function WatchLater() {
     const [ movies, setMovies ] = useState([]);
 
@@ -25,14 +27,13 @@ function WatchLater() {
         )
         setMovies(tempMovieList);
         saveList("@toWatchList", tempMovieList);
-
     }
 
     return(
     <main className={"main__sect main"}>
-        <h2 className={"watch-later__title"}>Assistir mais tarde</h2>
+        <PageTitle title="Assistir mais tarde" page="watch-later" />
         <article className={"watch-later__artc movies__artc movies container"}>
-            {movies.length === 0 ? (<p>"Não foi encontrado nenhum filme salvo."</p>) :
+            {movies.length === 0 ? (<p>Não foi encontrado nenhum filme salvo.</p>) :
                 movies.map(
                 (movie, index) => {
                     return(

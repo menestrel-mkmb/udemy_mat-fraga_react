@@ -51,8 +51,6 @@ export default function Movie() {
             setNotification("error") :
             favList.push(sendNotification());
             
-        console.log(`Favoritos:`);
-        console.log(favList);
         localStorage.setItem("@favoriteList", JSON.stringify(favList));
     }, [movie, sendNotification]);
 
@@ -64,8 +62,6 @@ export default function Movie() {
             setNotification("error") :
             watchList.push(sendNotification());
         
-        console.log(`Assistir mais tarde:`);
-        console.log(watchList);
         localStorage.setItem("@toWatchList", JSON.stringify(watchList));
     }, [movie, sendNotification]);
 
