@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import PageTitle from "../../components/PageTitle/PageTitle";
 
 import "./WatchLater.css";
+import { lists, toggleObjFromList } from "../../list";
 
 function WatchLater() {
     const [ movies, setMovies ] = useState([]);
@@ -13,21 +14,13 @@ function WatchLater() {
         setMovies(parsedList);
     }, []);
 
-    const saveList = (string, obj) => {
-        localStorage.setItem(string, JSON.stringify(obj));
-    }
+    const favMovie = useCallback((movie) => {
+        toggleObjFromList(lists.favorites, movie);
+    }, []);
 
-    const addFavorite = (index) => {
-        alert(`fav ${index}`);
-    }
-
-    const deleteMovie = (index) => {
-        const tempMovieList = movies.filter(
-            (movie, movieIndex) => movieIndex !== index
-        )
-        setMovies(tempMovieList);
-        saveList("@toWatchList", tempMovieList);
-    }
+    const watchMovie = useCallback((movie) => {
+        toggleObjFromList(lists.watchLater, movie);
+    }, []);
 
     return(
     <main className={"main__sect main"}>
@@ -41,12 +34,12 @@ function WatchLater() {
                             className={`movie__sect movie-${index}`}
                         >
                             <button className={`obj__btn favorite__btn`}
-                                onClick={ () => {addFavorite(index)}}
+                                onClick={ () => {favMovie(movie)}}
                             >
                                 F
                             </button>
                             <button className={`obj__btn delete__btn`}
-                                onClick={ () => {deleteMovie(index)}}
+                                onClick={ () => {watchMovie(movie)}}
                             >
                                 X
                             </button>

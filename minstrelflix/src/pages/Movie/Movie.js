@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
-import { dupNotification, errorNotification, successNotification } from "../../notifications";
+import { lists, toggleObjFromList } from "../../list";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 import { urlTitle } from "../../services/imdb";
@@ -37,32 +37,13 @@ export default function Movie() {
         fetchMovie();
     }, [movieId, navigate]);
 
-    const sendNotification = useCallback(() => {
-        successNotification();
-        return movie;
+    const favMovie = useCallback(() => {
+        toggleObjFromList(lists.favorites, movie);
     }, [movie]);
 
-    const favMovie = useCallback(() => {
-        const localList = localStorage.getItem("@favoriteList");
-        let favList = JSON.parse(localList) || [];
-
-        favList.some((favMovie) => movie.id === favMovie.id) ?
-            dupNotification() :
-            favList.push(sendNotification());
-            
-        localStorage.setItem("@favoriteList", JSON.stringify(favList));
-    }, [movie, sendNotification]);
-
     const watchLaterMovie = useCallback(() => {
-        const localList = localStorage.getItem("@toWatchList");
-        let watchList = JSON.parse(localList) || [];
-
-        watchList.some((watchMovie) => movie.id === watchMovie.id) ?
-            dupNotification() :
-            watchList.push(sendNotification());
-        
-        localStorage.setItem("@toWatchList", JSON.stringify(watchList));
-    }, [movie, sendNotification]);
+        toggleObjFromList(lists.watchLater, movie);
+    },[movie]);
 
     if(loading) return(<Loading />);
 
