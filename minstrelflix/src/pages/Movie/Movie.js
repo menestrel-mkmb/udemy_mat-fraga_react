@@ -4,7 +4,7 @@ import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
 import Notification from "../../components/Notification/Notification";
-import { dupNotification, errorNotification, successNotification } from "../../App";
+import { dupNotification, errorNotification, successNotification } from "../../notifications";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 import { urlTitle } from "../../services/imdb";
