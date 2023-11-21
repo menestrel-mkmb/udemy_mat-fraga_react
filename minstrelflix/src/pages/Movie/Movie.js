@@ -4,6 +4,7 @@ import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
 import Notification from "../../components/Notification/Notification";
+import { dupNotification, errorNotification, successNotification } from "../../App";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
 import { urlTitle } from "../../services/imdb";
@@ -39,7 +40,7 @@ export default function Movie() {
     }, [movieId, navigate]);
 
     const sendNotification = useCallback(() => {
-        setNotification("success");
+        successNotification();
         return movie;
     }, [movie]);
 
@@ -48,7 +49,7 @@ export default function Movie() {
         let favList = JSON.parse(localList) || [];
 
         favList.some((favMovie) => movie.id === favMovie.id) ?
-            setNotification("error") :
+            dupNotification() :
             favList.push(sendNotification());
             
         localStorage.setItem("@favoriteList", JSON.stringify(favList));
