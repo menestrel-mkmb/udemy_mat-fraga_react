@@ -16,9 +16,9 @@ const noChangedList = (list_in, list_out) => {
 
 export const toggleObjFromList = (string, obj) => {
     let localList = loadParsedListFromLocalStorage(string);
-    localList = alreadyOnList(localList, obj) ?
+    alreadyOnList(localList, obj) ?
         removeFromList(string, obj) : addToList(string, obj);
-    return localList;
+    return loadParsedListFromLocalStorage(string);
 };
 
 const addToList = (string, obj) => {
@@ -38,7 +38,6 @@ const addToList = (string, obj) => {
             addedNotification() :
             notification === "duplicate" ?
                 dupNotification() : errorNotification();
-    return localList;
 }
 
 const removeFromList = (string, obj) => {
@@ -58,7 +57,6 @@ const removeFromList = (string, obj) => {
     notification === "success" ?
             removedNotification() :
             errorNotification();
-    return localList;
 }
 
 const loadParsedListFromLocalStorage = (string) => {

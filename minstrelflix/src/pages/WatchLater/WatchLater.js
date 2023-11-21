@@ -18,8 +18,8 @@ function WatchLater() {
         toggleObjFromList(lists.favorites, movie);
     }, []);
 
-    const watchMovie = useCallback((movie) => {
-        toggleObjFromList(lists.watchLater, movie);
+    const watchMovie = useCallback((movie, index) => {
+        setMovies(toggleObjFromList(lists.watchLater, movie));
     }, []);
 
     return(
