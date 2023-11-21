@@ -10,7 +10,7 @@ function Card(props) {
 
     return(
     <section className={`movie__sect movie movie-${index} card`}>
-        <Link to={`/movie/${movie.id}`}>
+        <Link className={"link__movie"} to={`/movie/${movie.id}`}>
             <img className={"movie__img"}
                 src={ API_PARAMS.image_base_url + API_PARAMS.image_w300_size + movie.poster_path}
                 alt={`Poster Oficial do filme ${movie.title}`}
