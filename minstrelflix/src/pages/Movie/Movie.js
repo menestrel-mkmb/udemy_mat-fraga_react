@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./Movie.css";
 
 import Loading from "../../components/Loading/Loading";
-import Notification from "../../components/Notification/Notification";
 import { dupNotification, errorNotification, successNotification } from "../../notifications";
 
 import apitmdb, { API_PARAMS, INTERNAL_API_PARAMS } from "../../services/api-tmdb";
@@ -15,7 +14,6 @@ export default function Movie() {
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true);
     const [movieNacional, setMovieNacional] = useState(false);
-    let [notification, setNotification] = useState("");
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -60,7 +58,7 @@ export default function Movie() {
         let watchList = JSON.parse(localList) || [];
 
         watchList.some((watchMovie) => movie.id === watchMovie.id) ?
-            setNotification("error") :
+            dupNotification() :
             watchList.push(sendNotification());
         
         localStorage.setItem("@toWatchList", JSON.stringify(watchList));
@@ -70,7 +68,6 @@ export default function Movie() {
 
     return(
     <main className={'main__sect main'}>
-        {notification && <Notification type={notification} />}
         <img className={"backdrop__img"}
             src={API_PARAMS.image_base_url
                 + API_PARAMS.image_original_size
