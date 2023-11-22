@@ -14,3 +14,9 @@
 
     padding: 2rem 0;
 }
+
+.favorite__btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
