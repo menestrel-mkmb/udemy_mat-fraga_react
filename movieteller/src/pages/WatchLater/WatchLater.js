@@ -9,8 +9,8 @@ function WatchLater() {
     const [ movies, setMovies ] = useState([]);
 
     useEffect(() => {
-        const watchList = localStorage.getItem("@toWatchList");
-        const parsedList = JSON.parse(watchList);
+        const watchList = localStorage.getItem(lists.watchLater);
+        const parsedList = JSON.parse(watchList) || [];
         setMovies(parsedList);
     }, []);
 
@@ -18,7 +18,7 @@ function WatchLater() {
         toggleObjFromList(lists.favorites, movie);
     }, []);
 
-    const watchMovie = useCallback((movie, index) => {
+    const watchMovie = useCallback((movie) => {
         setMovies(toggleObjFromList(lists.watchLater, movie));
     }, []);
 
@@ -33,7 +33,7 @@ function WatchLater() {
                         <section key={movie.id}
                             className={`movie__sect movie-${index}`}
                         >
-                            <button className={`obj__btn favorite__btn`}
+                            <button className={`obj__btn watch-favorite__btn`}
                                 onClick={ () => {favMovie(movie)}}
                             >
                                 F

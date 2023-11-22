@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import Card from "../../components/Card/Card";
+import { lists, toggleObjFromList} from '../../list';
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 import "./Favorites.css";
-import PageTitle from "../../components/PageTitle/PageTitle";
 
 export default function Favorites() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        const favList = localStorage.getItem("@favoriteList");
+        const favList = localStorage.getItem(lists.favorites);
         const parsedList = JSON.parse(favList) || [];
         setMovies(parsedList);
+    }, []);
+
+    const favMovie = useCallback((movie) => {
+        toggleObjFromList(lists.favorites, movie);
     }, []);
 
     return(
@@ -21,10 +27,19 @@ export default function Favorites() {
                 movies.map(
                 (movie, index) => {
                     return(
-                        <Card key={movie.id}
-                            index={index} movie={movie}
-                            lang={movie.original_lang}
-                        />
+                        <section key={movie.id}
+                            className={`movie__sect movie-${index}`}
+                        >
+                            <button className={`obj__btn favorite__btn`}
+                                onClick={ () => {favMovie(movie)}}
+                            >
+                                F
+                            </button>
+                            <Card key={movie.id}
+                                index={index} movie={movie}
+                                lang={movie.original_lang}
+                            />
+                        </section>
                     )
                 }
             )}
