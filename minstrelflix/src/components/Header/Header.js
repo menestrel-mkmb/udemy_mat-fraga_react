@@ -5,11 +5,12 @@ export default function Header() {
     return(
     <header className="App-header">
         <Link to="/">
-            <img src="" alt=" " />
-            <h2>Logo</h2>
+            <h1 className={"site__title logo__title header__title"}>
+                Movieteller <span className={"full-name__span"}>Notes</span>
+            </h1>
         </Link>
         <nav className={"menu__nav menu"}>
-            <Link to="/">Home</Link>
+            <Link to="/">Início</Link>
             <Link to="/favorites">Favoritos</Link>
             <Link to="/watchlater">Assistir mais tarde</Link>
         </nav>
