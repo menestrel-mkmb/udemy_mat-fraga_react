@@ -16,7 +16,7 @@ export default function Favorites() {
     }, []);
 
     const favMovie = useCallback((movie) => {
-        toggleObjFromList(lists.favorites, movie);
+        setMovies(toggleObjFromList(lists.favorites, movie));
     }, []);
 
     return(
