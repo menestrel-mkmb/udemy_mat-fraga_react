@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/movieteller/static/css/main.f9c1bd9b.css",
+    "main.js": "/movieteller/static/js/main.c83c9cb0.js",
+    "index.html": "/movieteller/index.html",
+    "main.f9c1bd9b.css.map": "/movieteller/static/css/main.f9c1bd9b.css.map",
+    "main.c83c9cb0.js.map": "/movieteller/static/js/main.c83c9cb0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f9c1bd9b.css",
+    "static/js/main.c83c9cb0.js"
+  ]
+}
