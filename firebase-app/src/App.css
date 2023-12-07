@@ -1,10 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    background-color: #e0e0e0;
+
+    width: 100%;
+}
+
+.artc {
+    width: 80%;
+
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     gap: .5rem;
 
-    width: 50%;
     min-width: 300px;
 
     margin: 0 auto;
+    padding: 2rem 4rem;
+}
+
+.posts__artc {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 80%;
+}
+
+.post__sect {
+    border: 2px white solid;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    width: 30%;
+    min-width: 300px;
+}
+
+.title {
+    text-transform: uppercase;
 }
