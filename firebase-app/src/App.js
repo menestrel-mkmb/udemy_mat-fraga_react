@@ -12,6 +12,7 @@ function App() {
   const [toEdit, setToEdit] = useState(false);
 
   const [posts, setPosts] = useState([]);
+  const dbName = "posts";
 
   const cleanInputs = () => {
     setAuthor('');
@@ -21,7 +22,7 @@ function App() {
   }
 
   const setSpecificPost = async (id) => {
-    await setDoc(doc(firebasedb, "posts", id), {
+    await setDoc(doc(firebasedb, dbName, id), {
       titulo: title,
       autor: author
     })
@@ -37,7 +38,7 @@ function App() {
   }
 
   const submitPost = async () => {
-    await addDoc(collection(firebasedb, "posts"), {
+    await addDoc(collection(firebasedb, dbName), {
       titulo: title,
       autor: author
     })
@@ -53,7 +54,7 @@ function App() {
   }
 
   const getAllPosts = async () => {
-    const postsRef = collection(firebasedb, "posts");
+    const postsRef = collection(firebasedb, dbName);
 
     await getDocs(postsRef)
     .then( (snapshot) => {
@@ -75,7 +76,7 @@ function App() {
   }
 
   const deletePost = async (id) => {
-    const docRef = doc(firebasedb, "posts", id);
+    const docRef = doc(firebasedb, dbName, id);
     await deleteDoc(docRef)
     .then( () => {
       console.log("Post deletado com sucesso");
