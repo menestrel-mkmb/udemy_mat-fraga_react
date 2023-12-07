@@ -7,10 +7,13 @@ import { useState } from 'react';
 function App() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [idPost, setIdPost] = useState('');
+  const [toEdit, setToEdit] = useState(false);
+
   const [posts, setPosts] = useState([]);
 
-  const setHardPost = async () => {
-    await setDoc(doc(firebasedb, "posts", "12345"), {
+  const setSpecificPost = async (id) => {
+    await setDoc(doc(firebasedb, "posts", id), {
       titulo: title,
       autor: author
     })
@@ -18,8 +21,10 @@ function App() {
       console.log("Transação finalizada com sucesso");
     })
     .catch( (error) => {
-      console.log("Erro na transação");
+      console.log("Erro na transação " + error);
     });
+
+    getAllPosts();
   }
 
   const submitPost = async () => {
@@ -44,6 +49,7 @@ function App() {
     .then( (snapshot) => {
       setAuthor(snapshot.data().autor);
       setTitle(snapshot.data().titulo);
+      setIdPost(snapshot.id);
     })
     .catch( (error) => {
       console.log("Erro ao buscar o post " + error);
@@ -72,10 +78,14 @@ function App() {
     } )
   }
 
+  const deletePost = async () => {
+    
+  }
+
   return (
     <div className="App">
       <h1>HelloWorld Firebase</h1>
-      <article className={"container"}>
+      <article className={"container forms__artc artc"}>
         <label>Título: </label>
         <textarea
           type="text" placeholder="Digite o texto"
@@ -90,17 +100,46 @@ function App() {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <button onClick={submitPost}>Cadastrar</button>
-        <button onClick={getAllPosts}>Buscar</button>
+        { toEdit &&
+          (
+          <section>
+            <label>ID Post: </label>
+            <input
+              type="text"
+              className={"author__inp inp"}
+              value={idPost}
+              onChange={(e) => setIdPost(e.target.value)}
+            />
+            <button onClick={ (e) => setSpecificPost(idPost)}>Editar</button>
+            <button onClick={ () => setToEdit(false)}>Cancelar editar</button>
+          </section>
+          )
+        }
+        { !toEdit &&
+          (<button onClick={submitPost}>Cadastrar</button>)
+        }
       </article>
-      <article>
-        {posts.map( (post) => {
+      <article className={"posts__artc artc"}>
+      <button onClick={getAllPosts}>Buscar Todos os posts</button>
+        {posts.map( (post, index) => {
           return(
             <section key={post.id}
               className={"post__sect post"}
             >
-              <h2>{post.title}</h2>
-              <h3>{post.author}</h3>
+              <div>
+                <h2 className={"post__title title"}>{post.title}</h2>
+                <h3 className={"post__sub-title author sub-title"}>{post.author}</h3>
+                { toEdit && (<label className={"post__id lbl"}>{post.id}</label>)}
+              </div>
+              <div>
+                <button onClick={ () => {
+                  setToEdit(true);
+                  setTitle(posts[index].title);
+                  setAuthor(posts[index].author);
+                  setIdPost(posts[index].id);
+                } }>Editar esse post</button>
+                <button onClick={ (e) => deletePost(e, post.id)}>Deletar</button>
+              </div>
             </section>);
         })}
       </article>
