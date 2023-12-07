@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import { firebasedb } from './services/firebase/firebaseConnection';
-import { addDoc, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 
 import './App.css';
-import { useState } from 'react';
 
 function App() {
   const [title, setTitle] = useState('');
@@ -49,20 +50,6 @@ function App() {
     });
 
     getAllPosts();
-  }
-
-  const getSpecificPost = async (id) => {
-    const postRef = doc(firebasedb, "posts", id);
-
-    await getDoc(postRef)
-    .then( (snapshot) => {
-      setAuthor(snapshot.data().autor);
-      setTitle(snapshot.data().titulo);
-      setIdPost(snapshot.id);
-    })
-    .catch( (error) => {
-      console.log("Erro ao buscar o post " + error);
-    });
   }
 
   const getAllPosts = async () => {
