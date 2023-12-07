@@ -1,5 +1,5 @@
 import { firebasedb } from './services/firebase/firebaseConnection';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import './App.css';
 import { useState } from 'react';
@@ -18,20 +18,33 @@ function App() {
     })
     .catch( (error) => {
       console.log("Erro na transação");
-    })
+    });
   }
 
   const submitPost = async () => {
-      await addDoc(collection(firebasedb, "posts"), {
-        titulo: title,
-        autor: author
-      })
-      .then( () => {
-        console.log("Transação finalizada com sucesso");
-      })
-      .catch( (error) => {
-        console.log("Erro na transação: " + error);
-      })
+    await addDoc(collection(firebasedb, "posts"), {
+      titulo: title,
+      autor: author
+    })
+    .then( () => {
+      console.log("Transação finalizada com sucesso");
+    })
+    .catch( (error) => {
+      console.log("Erro na transação: " + error);
+    });
+  }
+
+  const getAllPosts = async () => {
+    const postRef = doc(firebasedb, "posts", "DhUBHb7Mb4wL1iGHuj8v");
+
+    await getDoc(postRef)
+    .then( (snapshot) => {
+      setAuthor(snapshot.data().autor);
+      setTitle(snapshot.data().titulo);
+    })
+    .catch( (error) => {
+      console.log("Erro ao buscar o post " + error);
+    });
   }
 
   return (
@@ -53,6 +66,7 @@ function App() {
           onChange={(e) => setAuthor(e.target.value)}
         />
         <button onClick={submitPost}>Cadastrar</button>
+        <button onClick={getAllPosts}>Buscar</button>
       </article>
     </div>
   );
