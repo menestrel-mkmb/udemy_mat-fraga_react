@@ -1,3 +1,5 @@
+import { firebasedb } from "./services/firebase/firebaseconnection";
+
 function App() {
   return (
     <div className="App">
