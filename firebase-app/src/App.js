@@ -1,5 +1,5 @@
 import { firebasedb } from './services/firebase/firebaseConnection';
-import { addDoc, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 
 import './App.css';
 import { useState } from 'react';
@@ -12,6 +12,13 @@ function App() {
 
   const [posts, setPosts] = useState([]);
 
+  const cleanInputs = () => {
+    setAuthor('');
+    setTitle('');
+    setIdPost('');
+    setToEdit(false);
+  }
+
   const setSpecificPost = async (id) => {
     await setDoc(doc(firebasedb, "posts", id), {
       titulo: title,
@@ -19,6 +26,7 @@ function App() {
     })
     .then( () => {
       console.log("Transação finalizada com sucesso");
+      cleanInputs();
     })
     .catch( (error) => {
       console.log("Erro na transação " + error);
@@ -34,6 +42,7 @@ function App() {
     })
     .then( () => {
       console.log("Transação finalizada com sucesso");
+      cleanInputs();
     })
     .catch( (error) => {
       console.log("Erro na transação: " + error);
@@ -78,8 +87,17 @@ function App() {
     } )
   }
 
-  const deletePost = async () => {
-    
+  const deletePost = async (id) => {
+    const docRef = doc(firebasedb, "posts", id);
+    await deleteDoc(docRef)
+    .then( () => {
+      console.log("Post deletado com sucesso");
+      cleanInputs();
+      getAllPosts();
+    })
+    .catch( (error) => {
+      console.log("Erro ao deletar post " + error);
+    })
   }
 
   return (
@@ -102,25 +120,23 @@ function App() {
         />
         { toEdit &&
           (
-          <section>
-            <label>ID Post: </label>
-            <input
-              type="text"
-              className={"author__inp inp"}
-              value={idPost}
-              onChange={(e) => setIdPost(e.target.value)}
-            />
+          <section className={"edit__sect sect"}>
+            
             <button onClick={ (e) => setSpecificPost(idPost)}>Editar</button>
             <button onClick={ () => setToEdit(false)}>Cancelar editar</button>
           </section>
           )
         }
         { !toEdit &&
-          (<button onClick={submitPost}>Cadastrar</button>)
+          (
+          <section className={"cta__sect sect"}>
+            <button onClick={submitPost}>Cadastrar</button>
+            <button onClick={getAllPosts}>Buscar Todos os posts</button>
+          </section>
+          )
         }
       </article>
       <article className={"posts__artc artc"}>
-      <button onClick={getAllPosts}>Buscar Todos os posts</button>
         {posts.map( (post, index) => {
           return(
             <section key={post.id}
@@ -129,7 +145,7 @@ function App() {
               <div>
                 <h2 className={"post__title title"}>{post.title}</h2>
                 <h3 className={"post__sub-title author sub-title"}>{post.author}</h3>
-                { toEdit && (<label className={"post__id lbl"}>{post.id}</label>)}
+                
               </div>
               <div>
                 <button onClick={ () => {
@@ -138,7 +154,7 @@ function App() {
                   setAuthor(posts[index].author);
                   setIdPost(posts[index].id);
                 } }>Editar esse post</button>
-                <button onClick={ (e) => deletePost(e, post.id)}>Deletar</button>
+                <button onClick={ () => deletePost(posts[index].id)}>Deletar</button>
               </div>
             </section>);
         })}
