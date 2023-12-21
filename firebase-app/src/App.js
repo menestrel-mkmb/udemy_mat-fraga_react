@@ -107,21 +107,16 @@ function App() {
           onChange={(e) => setAuthor(e.target.value)}
         />
         { toEdit &&
-          (
-          <section className={"edit__sect sect"}>
-            
+          (<section className={"edit__sect sect"}>
             <button onClick={ (e) => setSpecificPost(idPost)}>Editar</button>
             <button onClick={ () => setToEdit(false)}>Cancelar editar</button>
-          </section>
-          )
+          </section>)
         }
         { !toEdit &&
-          (
-          <section className={"cta__sect sect"}>
+          (<section className={"cta__sect sect"}>
             <button onClick={submitPost}>Cadastrar</button>
             <button onClick={getAllPosts}>Buscar Todos os posts</button>
-          </section>
-          )
+          </section>)
         }
       </article>
       <article className={"posts__artc artc"}>
@@ -133,7 +128,6 @@ function App() {
               <div>
                 <h2 className={"post__title title"}>{post.title}</h2>
                 <h3 className={"post__sub-title author sub-title"}>{post.author}</h3>
-                
               </div>
               <div>
                 <button onClick={ () => {
