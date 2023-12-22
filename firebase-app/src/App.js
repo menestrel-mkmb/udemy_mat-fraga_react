@@ -6,6 +6,8 @@ import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/fi
 import './App.css';
 
 function App() {
+  const [email, setEmail] = useState('');
+
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [idPost, setIdPost] = useState('');
@@ -91,21 +93,40 @@ function App() {
   return (
     <div className="App">
       <h1>HelloWorld Firebase</h1>
+      <article className={"container login__artc artc"}>
+        <section className={"email__sect input__sect sect"}>
+          <label className={"email__lbl lbl"}>
+            e-mail:
+          </label>
+          <input
+            type="email" placeholder="e-mail para login"
+            className={"email__inp inp"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </section>
+      </article>
       <article className={"container forms__artc artc"}>
-        <label>Título: </label>
-        <textarea
-          type="text" placeholder="Digite o texto"
-          className={"title__inp inp"}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label>Autor: </label>
-        <input
-          type="text" placeholder="Autor do post"
-          className={"author__inp inp"}
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
+        <section className={"title__sect input__sect sect"}>
+          <label className={"title__lbl lbl"}>
+            Título:
+          </label>
+          <textarea
+            type="text" placeholder="Digite o texto"
+            className={"title__inp inp"}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </section>
+        <section>
+          <label>Autor: </label>
+          <input
+            type="text" placeholder="Autor do post"
+            className={"author__inp inp"}
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+        </section>
         { toEdit &&
           (<section className={"edit__sect sect"}>
             <button onClick={ (e) => setSpecificPost(idPost)}>Editar</button>
