@@ -7,6 +7,7 @@ import './App.css';
 
 function App() {
   const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -103,6 +104,16 @@ function App() {
             className={"email__inp inp"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </section>
+        <section className={"pass__sect input__sect sect"}>
+          <label className={"pass__lbl lbl"}>
+            senha:
+          </label>
+          <input
+            type="password" placeholder='********'
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
           />
         </section>
       </article>
