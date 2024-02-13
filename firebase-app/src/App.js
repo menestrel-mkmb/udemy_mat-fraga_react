@@ -33,7 +33,13 @@ function App() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    console.log("Login");
+    await signInWithEmailAndPassword(firebaseAuth, email, pass)
+    .then( () => {
+      console.log("Logado com sucesso");
+    })
+    .catch( () => {
+      console.log("Erro ao fazer login");
+    })
   }
 
   const [title, setTitle] = useState('');
