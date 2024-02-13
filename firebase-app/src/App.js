@@ -12,7 +12,13 @@ function App() {
 
   const createUser = async (e) => {
     e.preventDefault();
-    console.log("signup");
+    await createUserWithEmailAndPassword(firebaseAuth, email, pass)
+    .then( () => {
+      console.log("Cadastrado com sucesso");
+    })
+    .catch( () => {
+      console.log("Algum erro aconteceu");
+    })
   }
 
   const loginUser = async (e) => {
