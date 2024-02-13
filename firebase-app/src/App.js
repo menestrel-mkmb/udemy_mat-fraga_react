@@ -139,7 +139,6 @@ function App() {
       });
 
       setPosts(list);
-      console.log(list);
     })
     .catch( (error) => {
       console.log("Erro ao buscar os posts " + error);
