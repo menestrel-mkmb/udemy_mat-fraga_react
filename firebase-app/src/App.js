@@ -10,6 +10,9 @@ function App() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
+  const [user, setUser] = useState(false);
+  const [userDetail, setUserDetail] = useState({});
+
   const cleanLoginInput = () => {
     setEmail('');
     setPass('');
@@ -34,8 +37,16 @@ function App() {
   const loginUser = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(firebaseAuth, email, pass)
-    .then( () => {
-      console.log("Logado com sucesso");
+    .then( (data) => {
+      setUser(true);
+
+      setUserDetail({
+        uid: data.user.uid,
+        email: data.user.email,
+        verified: data.user.emailVerified,
+        authToken: data.user.getIdToken,
+      });
+      console.log(userDetail);
     })
     .catch( () => {
       console.log("Erro ao fazer login");
@@ -128,7 +139,8 @@ function App() {
   return (
     <div className="App">
       <h1>HelloWorld Firebase</h1>
-      <article className={"container login__artc artc"}>
+      { !user && (
+        <article className={"container login__artc artc"}>
         <section className={"email__sect input__sect sect"}>
           <label className={"email__lbl lbl"}>
             e-mail:
@@ -150,13 +162,21 @@ function App() {
             onChange={(e) => setPass(e.target.value)}
           />
         </section>
-        <button onClick={createUser}>
-          Criar conta
-        </button>
-        <button onClick={loginUser}>
-          Login
-        </button>
+        <section className={"cta__sect login-btns__sect sect"}>
+          <button onClick={createUser}>
+            Criar conta
+          </button>
+          <button onClick={loginUser}>
+            Login
+          </button>
+        </section>
       </article>
+      )}
+      { user && (
+        <article className={"container login__artc artc"}>
+          <h2>Seja bem-vindo {userDetail.email}</h2>
+        </article>
+      )}
       <article className={"container forms__artc artc"}>
         <section className={"title__sect input__sect sect"}>
           <label className={"title__lbl lbl"}>
