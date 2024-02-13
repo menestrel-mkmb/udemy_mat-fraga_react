@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { firebasedb, firebaseAuth } from './services/firebase/firebaseConnection';
 import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 import './App.css';
 
@@ -10,20 +10,30 @@ function App() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
+  const cleanLoginInput = () => {
+    setEmail('');
+    setPass('');
+  }
+
   const createUser = async (e) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(firebaseAuth, email, pass)
     .then( () => {
       console.log("Cadastrado com sucesso");
+      cleanLoginInput();
     })
-    .catch( () => {
-      console.log("Algum erro aconteceu");
+    .catch( (error) => {
+      console.log("Algum erro aconteceu ao cadastrar");
+      if(error.code === 'auth/weak-password')
+        alert('Senha fraca');
+      if(error.code === 'auth/email-already-in-use')
+        alert('Conta já existente');
     })
   }
 
   const loginUser = async (e) => {
     e.preventDefault();
-    console.log("login");
+    console.log("Login");
   }
 
   const [title, setTitle] = useState('');
@@ -34,7 +44,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const dbName = "posts";
 
-  const cleanInputs = () => {
+  const cleanPostInputs = () => {
     setAuthor('');
     setTitle('');
     setIdPost('');
@@ -48,7 +58,7 @@ function App() {
     })
     .then( () => {
       console.log("Transação finalizada com sucesso");
-      cleanInputs();
+      cleanPostInputs();
     })
     .catch( (error) => {
       console.log("Erro na transação " + error);
@@ -64,7 +74,7 @@ function App() {
     })
     .then( () => {
       console.log("Transação finalizada com sucesso");
-      cleanInputs();
+      cleanPostInputs();
     })
     .catch( (error) => {
       console.log("Erro na transação: " + error);
@@ -101,7 +111,7 @@ function App() {
     await deleteDoc(docRef)
     .then( () => {
       console.log("Post deletado com sucesso");
-      cleanInputs();
+      cleanPostInputs();
       getAllPosts();
     })
     .catch( (error) => {
