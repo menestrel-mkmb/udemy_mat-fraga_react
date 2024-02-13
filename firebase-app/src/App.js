@@ -2,7 +2,11 @@ import { useState } from 'react';
 
 import { firebasedb, firebaseAuth } from './services/firebase/firebaseConnection';
 import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from 'firebase/auth';
 
 import './App.css';
 
@@ -51,6 +55,11 @@ function App() {
     .catch( () => {
       console.log("Erro ao fazer login");
     })
+  }
+
+  const logoutUser = async (e) => {
+    await signOut(firebaseAuth)
+    setUser(false);
   }
 
   const [title, setTitle] = useState('');
@@ -175,6 +184,7 @@ function App() {
       { user && (
         <article className={"container login__artc artc"}>
           <h2>Seja bem-vindo {userDetail.email}</h2>
+          <p>Não é você? Faça <button onClick={logoutUser}>logout</button></p>
         </article>
       )}
       <article className={"container forms__artc artc"}>
