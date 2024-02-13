@@ -1,13 +1,24 @@
 import { useState } from 'react';
 
-import { firebasedb } from './services/firebase/firebaseConnection';
+import { firebasedb, firebaseAuth } from './services/firebase/firebaseConnection';
 import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import './App.css';
 
 function App() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+
+  const createUser = async (e) => {
+    e.preventDefault();
+    console.log("signup");
+  }
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    console.log("login");
+  }
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -72,6 +83,7 @@ function App() {
       });
 
       setPosts(list);
+      console.log(list);
     })
     .catch( (error) => {
       console.log("Erro ao buscar os posts " + error);
@@ -116,6 +128,12 @@ function App() {
             onChange={(e) => setPass(e.target.value)}
           />
         </section>
+        <button onClick={createUser}>
+          Criar conta
+        </button>
+        <button onClick={loginUser}>
+          Login
+        </button>
       </article>
       <article className={"container forms__artc artc"}>
         <section className={"title__sect input__sect sect"}>
