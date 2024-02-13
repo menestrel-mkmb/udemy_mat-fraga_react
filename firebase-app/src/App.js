@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { firebasedb, firebaseAuth } from './services/firebase/firebaseConnection';
 import { addDoc, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 import {
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut
@@ -41,26 +42,39 @@ function App() {
   const loginUser = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(firebaseAuth, email, pass)
-    .then( (data) => {
-      setUser(true);
-
-      setUserDetail({
-        uid: data.user.uid,
-        email: data.user.email,
-        verified: data.user.emailVerified,
-        authToken: data.user.getIdToken,
-      });
-      console.log(userDetail);
-    })
+    .then( 
+      console.log(userDetail)
+    )
     .catch( () => {
       console.log("Erro ao fazer login");
     })
   }
 
   const logoutUser = async (e) => {
-    await signOut(firebaseAuth)
-    setUser(false);
+    await signOut(firebaseAuth);
   }
+
+  useEffect(() => {
+    async function verifyLogin(){
+      onAuthStateChanged(firebaseAuth, (userState) => {
+        if(userState){
+          console.log(userState);
+          setUser(true);
+          setUserDetail({
+            uid: userState.uid,
+            email: userState.email,
+            verified: userState.emailVerified,
+            authToken: userState.getIdToken,
+          })
+        } else {
+          setUser(false);
+          setUserDetail({});
+        }
+      });
+    }
+
+    verifyLogin();
+  }, []);
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
