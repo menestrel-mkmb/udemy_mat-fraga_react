@@ -1,9 +1,15 @@
-function App() {
+import { useState } from 'react';
+
+import Alunos from "./components/Alunos";
+
+export default function App() {
+  const [nomeAluno, setNomeAluno] = useState('Michael');
+
   return (
-    <div className="App">
-      <h1>Context API</h1>
-    </div>
+  <div className="App">
+    <h1>Context API</h1>
+    <Alunos nome={nomeAluno} />
+    <button setNomeAluno={e=>setNomeAluno('João')}> Trocar nome </button>
+  </div>
   );
 }
-
-export default App;
