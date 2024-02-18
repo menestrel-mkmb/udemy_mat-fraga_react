@@ -8,8 +8,7 @@ export default function App() {
   return (
   <div className="App">
     <h1>Context API</h1>
-    <Alunos nome={nomeAluno} />
-    <button setNomeAluno={e=>setNomeAluno('João')}> Trocar nome </button>
+    <Alunos nome={nomeAluno} setNome={setNomeAluno}/>
   </div>
   );
 }
