@@ -1,7 +1,7 @@
 import Nome from "../Nome";
 
-export default function Alunos({ nome, setNome, novoNome }){
+export default function Alunos(){
     return(<div>
-        <Nome nome={ nome } setNome={setNome} novoNome={novoNome} />
+        <Nome />
     </div>)
 }
