@@ -1,0 +1,8 @@
+{
+  "short_name": "Context API",
+  "name": "Using Context API on React - App Sample",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
