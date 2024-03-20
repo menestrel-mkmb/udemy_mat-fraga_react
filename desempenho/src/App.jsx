@@ -33,17 +33,9 @@ function App() {
       name: data.name,
       email: data.email,
       username: data.username,
+      description: data.description ? data.description : null,
       role: data.role
     });
-    (data.description) ? 
-      setResult({
-        ...result,
-        description: data.description
-      }) :
-      setResult({
-        ...result,
-        description: null
-      });
   }
 
   return (
