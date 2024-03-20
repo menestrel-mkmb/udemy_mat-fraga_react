@@ -1,15 +1,9 @@
-import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import './App.css';
 import { Header } from './Header';
 
 
 function App() {
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const usernameRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const typeRef = useRef("user");
 
   const {register, handleSubmit} = useForm();
 
