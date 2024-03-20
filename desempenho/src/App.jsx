@@ -1,15 +1,22 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import './App.css';
+
 import { Header } from './Header';
+import './App.css';
 
 
 function App() {
-
   const {register, handleSubmit} = useForm();
+  const [result, setResult] = useState(null);
 
   function handleSave(data){
-    const {name, email, username, description, role} = data;
-    console.log(name, email, username, description, role);
+    setResult({
+      name: data.name,
+      email: data.email,
+      username: data.username,
+      description: data.description,
+      role: data.role
+    });
   }
 
   return (
@@ -60,9 +67,16 @@ function App() {
           <option value="admin">admin</option>
         </select>
 
-
         <button className="button" type="submit">Enviar</button>
       </form>
+
+      { result && <section>
+        <p>Nome: {result.name}</p>
+        <p>Email: {result.email}</p>
+        <p>Username: {result.username}</p>
+        <p>Descrição: {result.description}</p>
+        <p>Role: {result.role}</p>
+      </section> }
     </div>
   )
 }
