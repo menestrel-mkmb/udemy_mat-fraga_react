@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
-import './App.css'
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import './App.css';
 import { Header } from './Header';
 
 
@@ -10,14 +11,11 @@ function App() {
   const descriptionRef = useRef(null);
   const typeRef = useRef("user");
 
-  function handleSave(e){
-    e.preventDefault();
+  const {register, handleSubmit} = useForm();
 
-    console.log(nameRef.current?.value);
-    console.log(emailRef.current?.value);
-    console.log(usernameRef.current?.value);
-    console.log(descriptionRef.current?.value);
-    console.log(typeRef.current.value);
+  function handleSave(data){
+    const {name, email, username, description, role} = data;
+    console.log(name, email, username, description, role);
   }
 
   return (
@@ -25,39 +23,44 @@ function App() {
       <h1>React</h1>
       <Header/>
 
-      <form className="form" onSubmit={handleSave}>
+      <form className="form" onSubmit={handleSubmit(handleSave)}>
         <input
           className="input"
-          ref={nameRef}
           type="text"
           placeholder="Digite seu nome..."
+          {...register("name")}
+          id='name'
         />
 
         <input
           className="input"
-          ref={emailRef}
           type="text"
           placeholder="Digite seu email..."
+          {...register("email")}
+          id='email'
         />
 
         <input
           className="input"
-          ref={usernameRef}
           type="text"
           placeholder="Digite seu username..."
+          {...register("username")}
+          id='username'
         />
 
         <textarea
           className="input"
-          ref={descriptionRef}
           type="text"
           placeholder="Digite sua descriçao..."
+          {...register("description")}
+          id='description'
         ></textarea>
 
 
         <select  
           className="select"
-          ref={typeRef}
+          {...register("role")}
+          id='role'
         >
           <option value="user">user</option>
           <option value="admin">admin</option>
