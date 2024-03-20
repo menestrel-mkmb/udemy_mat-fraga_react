@@ -14,9 +14,17 @@ function App() {
       name: data.name,
       email: data.email,
       username: data.username,
-      description: data.description,
       role: data.role
     });
+    (data.description) ? 
+      setResult({
+        ...result,
+        description: data.description
+      }) :
+      setResult({
+        ...result,
+        description: null
+      });
   }
 
   return (
@@ -53,7 +61,7 @@ function App() {
           className="input"
           type="text"
           placeholder="Digite sua descriçao..."
-          {...register("description", { required: true })}
+          {...register("description")}
           id='description'
         ></textarea>
 
@@ -75,7 +83,7 @@ function App() {
         <p>Nome: {result.name}</p>
         <p>Email: {result.email}</p>
         <p>Username: {result.username}</p>
-        <p>Descrição: {result.description}</p>
+        {result.description && <p>Descrição: {result.description}</p>}
         <p>Role: {result.role}</p>
       </section>
       )}
