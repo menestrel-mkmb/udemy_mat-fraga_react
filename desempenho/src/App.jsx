@@ -29,7 +29,7 @@ function App() {
           className="input"
           type="text"
           placeholder="Digite seu nome..."
-          {...register("name")}
+          {...register("name", { required: true })}
           id='name'
         />
 
@@ -37,7 +37,7 @@ function App() {
           className="input"
           type="text"
           placeholder="Digite seu email..."
-          {...register("email")}
+          {...register("email", { required: true })}
           id='email'
         />
 
@@ -45,7 +45,7 @@ function App() {
           className="input"
           type="text"
           placeholder="Digite seu username..."
-          {...register("username")}
+          {...register("username", { required: true })}
           id='username'
         />
 
@@ -53,14 +53,14 @@ function App() {
           className="input"
           type="text"
           placeholder="Digite sua descriçao..."
-          {...register("description")}
+          {...register("description", { required: true })}
           id='description'
         ></textarea>
 
 
         <select  
           className="select"
-          {...register("role")}
+          {...register("role", { required: true })}
           id='role'
         >
           <option value="user">user</option>
@@ -70,13 +70,15 @@ function App() {
         <button className="button" type="submit">Enviar</button>
       </form>
 
-      { result && <section>
+      { result && (
+      <section>
         <p>Nome: {result.name}</p>
         <p>Email: {result.email}</p>
         <p>Username: {result.username}</p>
         <p>Descrição: {result.description}</p>
         <p>Role: {result.role}</p>
-      </section> }
+      </section>
+      )}
     </div>
   )
 }
