@@ -23,15 +23,21 @@ const schema = z.object({
         .min(5, 'Por favor utilize pelo menos 5 caracteres')
         .max(64, 'Por favor utilize no maximo 64 caracteres'),
 
-  username: z.string('Por favor utilize apenas letras, números e o símbolo: e _')
+  username: z.string()
         .min(4, 'Por favor utilize pelo menos 4 caracteres')
         .max(12, 'Por favor utilize no maximo 12 caracteres')
         .refine( value => /^\w*$/su.test(value), 'Por favor utilize apenas letras, números e o símbolo: e _'),
 
   role: z.string('Por favor selecione um elemento válido'),
 
-  description: z.string('Por favor utilize apenas letras, números e os símbolos: - e _')
+  description: z.string()
         .optional()
+        .refine(
+          (value) => /(\p{Letter}*){4,256}$/su.test(value),
+          {
+            message: 'Por favor utilize apenas letras e espaço, com um mínimo 4 e um máximo 256 caracteres',
+            unicode: true
+        })
 });
 
 function App() {
