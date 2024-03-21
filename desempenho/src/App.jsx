@@ -25,7 +25,8 @@ const schema = z.object({
 
   username: z.string('Por favor utilize apenas letras, números e o símbolo: e _')
         .min(4, 'Por favor utilize pelo menos 4 caracteres')
-        .max(12, 'Por favor utilize no maximo 12 caracteres'),
+        .max(12, 'Por favor utilize no maximo 12 caracteres')
+        .refine( value => /^\w*$/su.test(value), 'Por favor utilize apenas letras, números e o símbolo: e _'),
 
   role: z.string('Por favor selecione um elemento válido'),
 
