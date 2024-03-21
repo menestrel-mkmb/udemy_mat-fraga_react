@@ -8,18 +8,27 @@ import { Header } from './Header';
 import './App.css';
 
 const schema = z.object({
-  name: z.string('Por favor utilize apenas letras')
-        .nonempty('O campo de nome não pode ser vazio'),
+  name: z.string()
+        .min(8, 'Por favor utilize pelo menos 8 caracteres')
+        .max(64, 'Por favor utilize no maximo 64 caracteres')
+        .refine(
+          (value) => /(\p{Letter}*){4,64}$/su.test(value),
+          {
+            message: 'Por favor utilize apenas letras e espaço, com um mínimo 4 e um máximo 64 caracteres',
+            unicode: true
+        }),
+
   email: z.string()
         .email('Digite um email válido no formato: example@company.tld')
-        .max(64, 'Por favor utilize no maximo 64 caracteres')
-        .nonempty('O campo de email não pode ser vazio'),
-  username: z.string('Por favor utilize apenas letras, números e os símbolos: - e _')
+        .min(5, 'Por favor utilize pelo menos 5 caracteres')
+        .max(64, 'Por favor utilize no maximo 64 caracteres'),
+
+  username: z.string('Por favor utilize apenas letras, números e o símbolo: e _')
         .min(4, 'Por favor utilize pelo menos 4 caracteres')
-        .max(12, 'Por favor utilize no maximo 12 caracteres')
-        .nonempty('O campo de nome de usuário não pode ser vazio'),
-  role: z.string('Por favor selecione um elemento válido')
-        .nonempty('O tipo de cargo não pode ser vazio'),
+        .max(12, 'Por favor utilize no maximo 12 caracteres'),
+
+  role: z.string('Por favor selecione um elemento válido'),
+
   description: z.string('Por favor utilize apenas letras, números e os símbolos: - e _')
         .optional()
 });
