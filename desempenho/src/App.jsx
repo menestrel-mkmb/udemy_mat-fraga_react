@@ -43,6 +43,7 @@ const schema = z.object({
 function App() {
   const {register, handleSubmit, formState: {errors} } = useForm({ resolver: zodResolver(schema) });
   const [result, setResult] = useState(null);
+  const [testMemo, setTestMemo] = useState('');
 
   function handleSave(data){
     setResult({
@@ -57,9 +58,18 @@ function App() {
   return (
     <div className="container">
       <h1>React</h1>
-      <Header/>
+      <Header name={testMemo}/>
 
       <form className="form" onSubmit={handleSubmit(handleSave)}>
+        <input
+          className="input"
+          type="text"
+          placeholder="Digite o título..."
+          value={testMemo}
+          onChange={e => setTestMemo(e.target.value)}
+          id='title'
+        />
+
         <input
           className="input"
           type="text"
