@@ -51,7 +51,7 @@ function App() {
           {...register("name")}
           id='name'
         />
-        { errors.name && <span>{errors.name.message}</span>}
+        { errors.name && <span className="inp-error__span">{errors.name.message}</span>}
 
         <input
           className="input"
@@ -60,7 +60,7 @@ function App() {
           {...register("email")}
           id='email'
         />
-        { errors.email && <span>{errors.email.message}</span>}
+        { errors.email && <span className="inp-error__span">{errors.email.message}</span>}
 
         <input
           className="input"
@@ -69,16 +69,16 @@ function App() {
           {...register("username")}
           id='username'
         />
-        { errors.username && <span>{errors.username.message}</span>}
+        { errors.username && <span className="inp-error__span">{errors.username.message}</span>}
 
         <textarea
           className="input"
           type="text"
-          placeholder="Digite sua descriçao..."
+          placeholder="Digite sua descrição..."
           {...register("description")}
           id='description'
         ></textarea>
-        { errors.description && <span>{errors.description.message}</span>}
+        { errors.description && <span className="inp-error__span">{errors.description.message}</span>}
 
 
         <select  
@@ -89,7 +89,7 @@ function App() {
           <option value="user">user</option>
           <option value="admin">admin</option>
         </select>
-        { errors.role && <span>{errors.role.message}</span>}
+        { errors.role && <span className="inp-error__span">{errors.role.message}</span>}
 
         <button className="button" type="submit">Enviar</button>
       </form>
